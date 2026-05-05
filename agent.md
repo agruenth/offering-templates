@@ -35,6 +35,9 @@ A collection of `.html` files, one per consulting offering. The [Offering Catalo
   <meta name="value-inputs"  content="employees:number:Number of Employees" />
   <meta name="value-formula" content="employees * 5000" />
   <meta name="value-label"   content="Estimated Annual Value (€)" />
+  <meta name="contacts"      content="" />
+  <meta name="opportunity-ids" content="" />
+  <meta name="references"    content="" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
