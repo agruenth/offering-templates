@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cloud Migration Programme</title>
+  <meta name="slug" content="cloud-migration-programme" />
+  <meta name="title" content="Cloud Migration Programme" />
+  <meta name="symbol" content="☁️" />
+  <meta name="lifecycle" content="implementation" />
+  <meta name="summary" content="End-to-end delivery of workload migration to public cloud — from landing zone setup through application re-platforming to steady-state operations." />
+  <meta name="tags" content="cloud, migration, AWS, Azure, infrastructure, DevOps" />
+  <meta name="industries" content="Financial Services, Retail, Media, Manufacturing" />
+  <meta name="problems" content="high data-centre costs, lack of scalability, slow release cycles, infrastructure toil" />
+  <meta name="profiles" content="CTO, VP Engineering, Head of Infrastructure, DevOps Lead" />
+  <meta name="methods" content="6R Framework, Landing Zone, IaC, CI/CD, FinOps" />
+  <meta name="technologies" content="AWS, Azure, Terraform, Kubernetes, GitHub Actions, Datadog" />
+  <meta name="prior-offerings" content="technology-architecture-review" />
+  <meta name="next-offerings" content="platform-engineering-setup,site-reliability-engineering" />
+  <meta name="value-inputs" content="dcCost:number:Annual Data Centre Cost (€M),appCount:number:Apps to Migrate" />
+  <meta name="value-formula" content="dcCost * 0.35 + appCount * 25000" />
+  <meta name="value-label" content="Estimated 3-Year Cost Saving (€)" />
+</head>
+<body>
+  <h2>What we do</h2>
+  <p>
+    We plan and deliver the migration of your workloads to public cloud, handling everything
+    from landing zone design and governance to application re-platforming and the handover
+    to your internal teams — with a relentless focus on cost, security, and reliability.
+  </p>
+
+  <h2>Approach</h2>
+  <ol>
+    <li><strong>Foundation (Month 1–2):</strong> Design and deploy the cloud landing zone — accounts structure, network topology, identity federation, security baselines, and cost governance. Stand up CI/CD pipelines and observability stack.</li>
+    <li><strong>Pilot Wave (Month 2–3):</strong> Migrate 2–3 non-critical workloads using the agreed 6R patterns (rehost, replatform, refactor, repurchase, retire, retain). Validate tooling and runbooks.</li>
+    <li><strong>Production Waves (Month 3–12):</strong> Execute migration waves in priority order. Each wave includes: assess → migrate → test → cut-over → decommission. Embedded engineers work alongside your team.</li>
+    <li><strong>Steady State (Month 12+):</strong> Handover to internal operations or managed service. FinOps optimisation, tagging governance, reserved instance planning.</li>
+  </ol>
+
+  <h2>Deliverables</h2>
+  <ul>
+    <li>Cloud Landing Zone (fully configured, IaC-managed)</li>
+    <li>Migration Factory Playbooks (per application pattern)</li>
+    <li>Migrated Workloads (agreed scope, tested, documented)</li>
+    <li>Observability Stack (dashboards, alerts, on-call runbooks)</li>
+    <li>FinOps Dashboard + Rightsizing Recommendations</li>
+    <li>Operations Handover Pack</li>
+  </ul>
+
+  <h2>Typical engagement</h2>
+  <p>6–18 months · 3–8 consultants · T&amp;M with milestone gates</p>
+
+  <h2>Migration wave pattern</h2>
+  <div class="mermaid">
+    graph LR
+      A[Landing Zone] --> B[Pilot Wave]
+      B --> C{Go/No-Go}
+      C -->|Go| D[Wave 2]
+      D --> E[Wave 3..n]
+      E --> F[Decommission On-Prem]
+      F --> G[Steady State Ops]
+  </div>
+</body>
+</html>

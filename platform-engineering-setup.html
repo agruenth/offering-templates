@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Platform Engineering Setup</title>
+  <meta name="slug" content="platform-engineering-setup" />
+  <meta name="title" content="Platform Engineering Setup" />
+  <meta name="symbol" content="⚙️" />
+  <meta name="lifecycle" content="implementation" />
+  <meta name="summary" content="Build an Internal Developer Platform (IDP) that gives product teams self-service infrastructure, standardised pipelines, and golden paths — so they ship faster without bottlenecks." />
+  <meta name="tags" content="platform-engineering, IDP, DevOps, developer-experience, Kubernetes" />
+  <meta name="industries" content="Technology, Financial Services, Retail, Scale-ups" />
+  <meta name="problems" content="slow developer onboarding, infra bottlenecks, inconsistent environments, cognitive overload on product teams" />
+  <meta name="profiles" content="CTO, VP Engineering, Platform Engineering Lead, DevOps Lead" />
+  <meta name="methods" content="Team Topologies, Golden Path, GitOps, Developer Surveys, DORA Metrics" />
+  <meta name="technologies" content="Kubernetes, Backstage, ArgoCD, Crossplane, Terraform, Prometheus, GitHub Actions" />
+  <meta name="prior-offerings" content="technology-architecture-review,cloud-migration-programme" />
+  <meta name="next-offerings" content="site-reliability-engineering,developer-productivity-programme" />
+  <meta name="value-inputs" content="devCount:number:Number of Developers,deployFreq:number:Target Deploys/Team/Day" />
+  <meta name="value-formula" content="devCount * 8000 + deployFreq * devCount * 1200" />
+  <meta name="value-label" content="Estimated Annual Productivity Gain (€)" />
+</head>
+<body>
+  <h2>What we do</h2>
+  <p>
+    We help you build and adopt an Internal Developer Platform that reduces cognitive load
+    on product teams, enforces good defaults, and gives your developers a self-service
+    experience for infrastructure, pipelines, and environments — without needing to become
+    Kubernetes experts.
+  </p>
+
+  <h2>Approach</h2>
+  <ol>
+    <li><strong>Developer Experience Baseline:</strong> Survey developers to understand friction points. Measure DORA metrics (deployment frequency, lead time, MTTR, change failure rate) as baseline.</li>
+    <li><strong>Platform Design:</strong> Define the IDP capability map — what golden paths to build first. Design the platform team operating model using Team Topologies principles.</li>
+    <li><strong>Core Platform Build (Month 1–3):</strong> Deploy Kubernetes cluster(s), GitOps toolchain (ArgoCD), developer portal (Backstage), and first golden paths (web service, data pipeline, ML job).</li>
+    <li><strong>Onboarding &amp; Adoption (Month 3–6):</strong> Migrate 3–5 pilot teams onto the platform. Run enablement workshops. Iterate on golden paths based on feedback.</li>
+    <li><strong>Scale &amp; Operate:</strong> Expand to remaining teams. Establish platform team rituals (RFC process, deprecation policy, SLOs for the platform itself).</li>
+  </ol>
+
+  <h2>Deliverables</h2>
+  <ul>
+    <li>Internal Developer Platform (production-grade, IaC-managed)</li>
+    <li>Developer Portal (Backstage, with service catalogue and golden path templates)</li>
+    <li>2–4 Golden Path Templates (containerised service, scheduled job, etc.)</li>
+    <li>DORA Metrics Dashboard</li>
+    <li>Platform Team Operating Model &amp; Runbooks</li>
+    <li>Developer Onboarding Guide</li>
+  </ul>
+
+  <h2>Typical engagement</h2>
+  <p>3–6 months initial build · ongoing advisory · 2–4 consultants</p>
+
+  <h2>Platform capability model</h2>
+  <div class="mermaid">
+    graph TD
+      A[Developer Portal] --> B[Self-Service Infra]
+      A --> C[Golden Path Pipelines]
+      B --> D[Kubernetes Platform]
+      C --> D
+      D --> E[Observability]
+      D --> F[Security Controls]
+      E --> G[DORA Metrics]
+  </div>
+</body>
+</html>

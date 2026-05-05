@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Technology Architecture Review</title>
+  <meta name="slug" content="technology-architecture-review" />
+  <meta name="title" content="Technology Architecture Review" />
+  <meta name="symbol" content="🏗️" />
+  <meta name="lifecycle" content="conceptual" />
+  <meta name="summary" content="Independent review of an organisation's application landscape, integration patterns, and infrastructure — identifying risk, redundancy, and a target-state architecture." />
+  <meta name="tags" content="architecture, cloud, integration, modernisation" />
+  <meta name="industries" content="Financial Services, Insurance, Logistics, Public Sector" />
+  <meta name="problems" content="technology debt, fragile integrations, high run cost, scalability ceiling, security gaps" />
+  <meta name="profiles" content="CTO, Enterprise Architect, VP Engineering" />
+  <meta name="methods" content="Architecture Review Board, C4 Modelling, ADR, Fitness Functions" />
+  <meta name="technologies" content="AWS, Azure, GCP, Kubernetes, Kafka, Terraform" />
+  <meta name="prior-offerings" content="digital-strategy-assessment" />
+  <meta name="next-offerings" content="cloud-migration-programme,platform-engineering-setup" />
+  <meta name="value-inputs" content="appCount:number:Number of Applications,annualRunCost:number:Annual IT Run Cost (€M)" />
+  <meta name="value-formula" content="annualRunCost * 0.25 + appCount * 15000" />
+  <meta name="value-label" content="Estimated Annual IT Cost Reduction (€)" />
+</head>
+<body>
+  <h2>What we do</h2>
+  <p>
+    We conduct a thorough, independent review of your technology landscape — applications,
+    data flows, infrastructure, and operating practices — and produce an actionable
+    target-state architecture with a migration path that balances risk, cost, and speed.
+  </p>
+
+  <h2>Approach</h2>
+  <ol>
+    <li><strong>Inventory &amp; Discovery:</strong> Catalogue all applications, integrations, and infrastructure components. Collect architecture decision records and existing documentation.</li>
+    <li><strong>Risk &amp; Debt Analysis:</strong> Score each component on technical debt, operational risk, business criticality, and strategic fit. Identify the top 10 risk hotspots.</li>
+    <li><strong>Target Architecture Design:</strong> Co-design the target state with your architects using C4 models. Evaluate build vs buy vs SaaS options for key capabilities.</li>
+    <li><strong>Migration Sequencing:</strong> Produce a phased transition plan with clear milestones, cost estimates, and dependency mapping.</li>
+  </ol>
+
+  <h2>Deliverables</h2>
+  <ul>
+    <li>Application Portfolio Assessment (heatmap + scoring)</li>
+    <li>Current-State Architecture Diagrams (C4 Level 1–3)</li>
+    <li>Target-State Architecture (C4 Level 1–3)</li>
+    <li>Technology Debt Register</li>
+    <li>Migration Roadmap with cost/risk/value per initiative</li>
+    <li>Architecture Decision Records (ADRs) for key choices</li>
+  </ul>
+
+  <h2>Typical engagement</h2>
+  <p>6–8 weeks · 2–4 consultants · Fixed-fee or T&amp;M</p>
+
+  <h2>Architecture evolution</h2>
+  <div class="mermaid">
+    graph TD
+      A[Current State Audit] --> B[Risk Scoring]
+      B --> C[Target State Design]
+      C --> D[Migration Sequencing]
+      D --> E[Cloud Migration Programme]
+      D --> F[Platform Engineering Setup]
+  </div>
+</body>
+</html>
