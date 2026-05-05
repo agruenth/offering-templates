@@ -46,6 +46,9 @@ Each file is a standard HTML document. All metadata lives in `<meta>` tags in th
   <meta name="value-inputs"  content="fieldId:type:Label, fieldId2:type:Label2" />
   <meta name="value-formula" content="fieldId * fieldId2 * 1000" />
   <meta name="value-label"   content="Estimated Annual Saving (€)" />
+
+  <!-- Local preview stylesheet (ignored by the catalog) -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <h2>What we do</h2>
@@ -105,6 +108,18 @@ The `lifecycle` field controls which column an offering appears in on the grid v
 | `operation` | Run and sustain |
 | `continuous-improvement` | Ongoing optimisation |
 | `change-management` | People and adoption |
+
+## Local preview
+
+Open any `.html` file directly in a browser — no build step or server needed. Each file includes:
+
+```html
+<link rel="stylesheet" href="style.css" />
+```
+
+`style.css` lives in the repo root alongside the offering files. It provides clean typography, styled headings, lists, tables, code blocks, and badge/tag chip classes. The `.mermaid` div is shown as readable monospace text locally; the catalog renders it as a live diagram.
+
+The stylesheet is cosmetic only — the catalog ignores it and reads only the `<meta>` tags and body HTML.
 
 ## Mermaid diagrams
 

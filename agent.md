@@ -35,6 +35,7 @@ A collection of `.html` files, one per consulting offering. The [Offering Catalo
   <meta name="value-inputs"  content="employees:number:Number of Employees" />
   <meta name="value-formula" content="employees * 5000" />
   <meta name="value-label"   content="Estimated Annual Value (€)" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <h2>What we do</h2>
@@ -104,9 +105,21 @@ Add inside `<body>` wherever it fits:
 
 Keep it to one diagram per offering. `graph LR` (left-right) and `graph TD` (top-down) work best.
 
+## Local preview
+
+Open any `.html` file directly in a browser — no build step or server needed. The file includes `<link rel="stylesheet" href="style.css" />` which loads `style.css` from the same directory. It provides:
+
+- Clean typography and spacing
+- Styled headings, lists, tables, code blocks, and blockquotes
+- `.mermaid` div rendered as a readable monospace block (the catalog app renders it as a real diagram; locally it shows the raw syntax)
+- `.badge` and `.tag` chip classes for lifecycle labels
+
+The stylesheet is cosmetic only — the catalog ignores it and parses only the `<meta>` tags and body HTML.
+
 ## What NOT to do
 
 - Do not create non-`.html` files expecting them to be indexed — only `.html` is picked up.
 - Do not use `prior-offerings` — that field is parsed but has no effect in the current catalog version; use `next-offerings` on the preceding offering instead.
 - Do not put JavaScript or `<style>` blocks in the body — they will render as-is.
 - Do not make the `slug` meta differ from the filename — they must match exactly.
+- Do not remove the `<link rel="stylesheet" href="style.css" />` tag — it is needed for local preview.
