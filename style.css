@@ -1,0 +1,254 @@
+/* Offering Templates — standalone stylesheet
+   No build step required; open any .html directly in a browser. */
+
+:root {
+  --at-bg:           #ffffff;
+  --at-bg-muted:     #f5f6fa;
+  --at-bg-hover:     #eceef5;
+  --at-bg-canvas:    #f8f9fc;
+  --at-border:       #e2e4ec;
+  --at-border-mid:   #d0d3de;
+  --at-text:         #111827;
+  --at-text-2:       #374151;
+  --at-text-3:       #6b7280;
+  --at-text-muted:   #9ca3af;
+  --at-accent:       #1612ff;
+  --at-accent-hover: #2d2aff;
+  --at-accent-light: #cdd6ff;
+  --at-green:        #059669;
+  --at-yellow:       #d97706;
+  --at-orange:       #ea580c;
+  --at-red:          #dc2626;
+  --at-purple:       #7c3aed;
+  --at-font-sans: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --at-font-mono: "SF Mono", "Consolas", monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  font-family: var(--at-font-sans);
+  background: var(--at-bg-canvas);
+  color: var(--at-text);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+body {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 48px 32px 80px;
+}
+
+/* ── Meta header (rendered from <meta> tags by the catalog app, shown as-is locally) */
+.offering-meta {
+  background: var(--at-bg);
+  border: 1px solid var(--at-border);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 32px;
+  font-size: 13px;
+  color: var(--at-text-3);
+}
+
+/* ── Headings ── */
+h1 {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--at-text);
+  margin: 0 0 24px;
+}
+
+h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--at-text);
+  margin: 32px 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--at-border);
+}
+
+h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--at-text);
+  margin: 20px 0 8px;
+}
+
+h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--at-text-2);
+  margin: 16px 0 6px;
+}
+
+/* ── Body text ── */
+p {
+  font-size: 14.5px;
+  color: var(--at-text-2);
+  line-height: 1.75;
+  margin-bottom: 12px;
+}
+
+ul, ol {
+  padding-left: 22px;
+  margin-bottom: 14px;
+}
+
+li {
+  font-size: 14.5px;
+  color: var(--at-text-2);
+  line-height: 1.65;
+  margin-bottom: 5px;
+}
+
+li strong { color: var(--at-text); }
+
+strong { color: var(--at-text); font-weight: 600; }
+
+a {
+  color: var(--at-accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--at-accent-light);
+  transition: border-color 0.15s, color 0.15s;
+}
+
+a:hover {
+  color: var(--at-accent-hover);
+  border-bottom-color: var(--at-accent);
+}
+
+/* ── Tables ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 13px;
+}
+
+th {
+  text-align: left;
+  padding: 9px 14px;
+  background: var(--at-bg-muted);
+  color: var(--at-text-3);
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid var(--at-border);
+}
+
+td {
+  padding: 8px 14px;
+  color: var(--at-text-2);
+  border: 1px solid var(--at-border);
+}
+
+tr:nth-child(even) td { background: var(--at-bg-muted); }
+
+/* ── Code ── */
+code {
+  font-family: var(--at-font-mono);
+  font-size: 12.5px;
+  background: var(--at-bg-muted);
+  border: 1px solid var(--at-border);
+  border-radius: 4px;
+  padding: 2px 6px;
+  color: var(--at-accent);
+}
+
+pre {
+  background: var(--at-bg-muted);
+  border: 1px solid var(--at-border);
+  border-radius: 8px;
+  padding: 16px;
+  overflow-x: auto;
+  margin-bottom: 14px;
+  font-size: 13px;
+  font-family: var(--at-font-mono);
+  color: var(--at-text-2);
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* ── Blockquote ── */
+blockquote {
+  border-left: 3px solid var(--at-accent);
+  padding-left: 16px;
+  color: var(--at-text-3);
+  margin: 14px 0;
+  font-style: italic;
+}
+
+/* ── Mermaid diagrams (rendered by catalog; shown as plain text locally) ── */
+.mermaid {
+  background: var(--at-bg);
+  border: 1px solid var(--at-border);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 16px 0;
+  font-family: var(--at-font-mono);
+  font-size: 12.5px;
+  color: var(--at-text-3);
+  white-space: pre;
+  overflow-x: auto;
+}
+
+/* ── Badges / lifecycle chips ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.badge-blue   { background: var(--at-accent-light); color: var(--at-accent); }
+.badge-purple { background: rgba(124, 58, 237, 0.1); color: var(--at-purple); }
+.badge-green  { background: rgba(5, 150, 105, 0.1);  color: var(--at-green); }
+.badge-yellow { background: rgba(217, 119, 6, 0.1);  color: var(--at-yellow); }
+.badge-orange { background: rgba(234, 88, 12, 0.1);  color: var(--at-orange); }
+.badge-red    { background: rgba(220, 38, 38, 0.1);  color: var(--at-red); }
+
+/* ── Tag chips ── */
+.tag {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--at-bg-muted);
+  color: var(--at-text-3);
+  border: 1px solid var(--at-border);
+}
+
+/* ── Nav / back link (used by catalog wrapper, harmless locally) ── */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--at-text-3);
+  text-decoration: none;
+  margin-bottom: 20px;
+  border-bottom: none;
+}
+
+.back-link:hover { color: var(--at-accent); }
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  body { padding: 24px 16px 60px; }
+  h1   { font-size: 20px; }
+  h2   { font-size: 16px; }
+}
