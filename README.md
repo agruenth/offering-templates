@@ -95,6 +95,9 @@ Each file is a standard HTML document. All metadata lives in `<meta>` tags in th
 | `value-inputs` | No | Comma-separated calculator inputs. Each in the format `id:type:Label`. Types: `number`. |
 | `value-formula` | No | JavaScript expression using the input IDs to compute a value. |
 | `value-label` | No | Label for the computed value shown in the calculator. |
+| `contacts` | No | Comma-separated MHP contact persons. Add role in parentheses: `"Jane Doe (Partner), Max Mustermann (Senior Manager)"`. |
+| `opportunity-ids` | No | Comma-separated CRM/Salesforce opportunity IDs: `"OPP-12345, OPP-67890"`. |
+| `references` | No | Comma-separated links in the format `Label\|URL`: `"Confluence Page\|https://..., Proposal\|https://..."`. |
 
 ## Lifecycle values
 

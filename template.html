@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Offering Title</title>
+
+  <!-- ── Required ────────────────────────────────────────────────────────── -->
+  <meta name="slug"      content="your-offering-slug" />
+  <meta name="title"     content="Your Offering Title" />
+  <meta name="lifecycle" content="strategy" />
+  <meta name="summary"   content="One sentence shown on the catalog card and in search." />
+
+  <!-- ── Identity ────────────────────────────────────────────────────────── -->
+  <meta name="symbol"       content="🧩" />
+  <meta name="tags"         content="tag-one, tag-two" />
+  <meta name="industries"   content="Financial Services, Healthcare" />
+  <meta name="problems"     content="problem one, problem two" />
+  <meta name="profiles"     content="CTO, Head of Engineering" />
+  <meta name="methods"      content="Wardley Mapping, Team Topologies" />
+  <meta name="technologies" content="AWS, Kubernetes" />
+
+  <!-- ── Journey (comma-separated slugs that must exist in this repo) ───── -->
+  <meta name="next-offerings" content="slug-a, slug-b" />
+
+  <!-- ── Internal contacts (MHP) ─────────────────────────────────────────
+       Comma-separated names. Optionally add role in parentheses.
+       Example: "Jane Doe (Partner), Max Mustermann (Senior Manager)"
+  ────────────────────────────────────────────────────────────────────────── -->
+  <meta name="contacts" content="" />
+
+  <!-- ── Opportunity IDs (CRM / Salesforce) ──────────────────────────────
+       Comma-separated opportunity IDs from your CRM.
+       Example: "OPP-12345, OPP-67890"
+  ────────────────────────────────────────────────────────────────────────── -->
+  <meta name="opportunity-ids" content="" />
+
+  <!-- ── References / links ───────────────────────────────────────────────
+       Comma-separated entries in the format:  Label|URL
+       Example: "Confluence Page|https://confluence.mhp.com/..., Proposal|https://..."
+  ────────────────────────────────────────────────────────────────────────── -->
+  <meta name="references" content="" />
+
+  <!-- ── Value calculator (optional) ─────────────────────────────────────
+       value-inputs:  comma-separated  id:type:Label  (type = "number")
+       value-formula: JS expression using the input IDs
+       value-label:   label for the computed result
+  ────────────────────────────────────────────────────────────────────────── -->
+  <meta name="value-inputs"  content="revenue:number:Annual Revenue (€M), employees:number:Employees" />
+  <meta name="value-formula" content="revenue * 0.02 * 1000000 + employees * 1500" />
+  <meta name="value-label"   content="Estimated Annual Value (€)" />
+
+  <!-- Local preview stylesheet — the catalog ignores this line -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h2>What we do</h2>
+  <p>
+    One short paragraph describing the offering from the client's perspective.
+    Focus on outcome, not activities.
+  </p>
+
+  <h2>Approach</h2>
+  <ol>
+    <li><strong>Phase 1 (Week 1–2):</strong> Description of activities and outputs.</li>
+    <li><strong>Phase 2 (Week 3–4):</strong> Description of activities and outputs.</li>
+    <li><strong>Phase 3 (Week 5–6):</strong> Description of activities and outputs.</li>
+  </ol>
+
+  <h2>Deliverables</h2>
+  <ul>
+    <li>Deliverable one</li>
+    <li>Deliverable two</li>
+    <li>Deliverable three</li>
+  </ul>
+
+  <h2>Typical engagement</h2>
+  <p>Duration · Team size · Commercial model (e.g. 6 weeks · 2 consultants · Fixed-fee)</p>
+
+  <!-- Optional: Mermaid diagram. Shown as monospace locally, rendered as SVG in the catalog. -->
+  <div class="mermaid">
+    graph LR
+      A[Input] --> B[This Offering]
+      B --> C[Outcome]
+  </div>
+</body>
+</html>
