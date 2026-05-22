@@ -1,86 +1,1034 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Your Offering Title</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- ── Required ────────────────────────────────────────────────────────── -->
-  <meta name="slug"      content="your-offering-slug" />
-  <meta name="title"     content="Your Offering Title" />
-  <meta name="lifecycle" content="strategy" />
-  <meta name="summary"   content="One sentence shown on the catalog card and in search." />
+  <!-- ════════════════════════════════════════════════════════════════════
+       OFFERING METADATA — edit these values, they drive the catalog
+       ════════════════════════════════════════════════════════════════════ -->
 
-  <!-- ── Identity ────────────────────────────────────────────────────────── -->
-  <meta name="symbol"       content="🧩" />
-  <meta name="tags"         content="tag-one, tag-two" />
-  <meta name="industries"   content="Financial Services, Healthcare" />
-  <meta name="problems"     content="problem one, problem two" />
-  <meta name="profiles"     content="CTO, Head of Engineering" />
-  <meta name="methods"      content="Wardley Mapping, Team Topologies" />
-  <meta name="technologies" content="AWS, Kubernetes" />
+  <!-- Required -->
+  <meta name="slug"       content="my-offering-slug">
+  <meta name="title"      content="My Offering Title">
+  <meta name="symbol"     content="🚀">
+  <meta name="lifecycle"  content="strategy">
+  <!-- lifecycle options: strategy | conceptual | implementation | operation | change-management | continuous-improvement -->
 
-  <!-- ── Journey (comma-separated slugs that must exist in this repo) ───── -->
-  <meta name="next-offerings" content="slug-a, slug-b" />
+  <!-- Recommended -->
+  <meta name="summary"    content="A one-sentence management summary of this offering.">
+  <meta name="problems"   content="Problem one,Problem two,Problem three">
+  <meta name="tags"       content="tag1,tag2,tag3">
+  <meta name="industries" content="financial-services,retail">
 
-  <!-- ── Internal contacts (MHP) ─────────────────────────────────────────
-       Comma-separated names. Optionally add role in parentheses.
-       Example: "Jane Doe (Partner), Max Mustermann (Senior Manager)"
-  ────────────────────────────────────────────────────────────────────────── -->
-  <meta name="contacts" content="" />
+  <!-- Who we bring and how we work -->
+  <meta name="profiles"      content="Role 1,Role 2">
+  <meta name="methods"       content="Method A,Framework B">
+  <meta name="technologies"  content="Tool X,Platform Y">
 
-  <!-- ── Opportunity IDs (CRM / Salesforce) ──────────────────────────────
-       Comma-separated opportunity IDs from your CRM.
-       Example: "OPP-12345, OPP-67890"
-  ────────────────────────────────────────────────────────────────────────── -->
-  <meta name="opportunity-ids" content="" />
+  <!-- Contact persons (display names, comma-separated) -->
+  <meta name="contacts"      content="">
 
-  <!-- ── References / links ───────────────────────────────────────────────
-       Comma-separated entries in the format:  Label|URL
-       Example: "Confluence Page|https://confluence.mhp.com/..., Proposal|https://..."
-  ────────────────────────────────────────────────────────────────────────── -->
-  <meta name="references" content="" />
+  <!-- Opportunity IDs from CRM (comma-separated) -->
+  <meta name="opportunity-ids" content="">
 
-  <!-- ── Value calculator (optional) ─────────────────────────────────────
-       value-inputs:  comma-separated  id:type:Label  (type = "number")
-       value-formula: JS expression using the input IDs
-       value-label:   label for the computed result
-  ────────────────────────────────────────────────────────────────────────── -->
-  <meta name="value-inputs"  content="revenue:number:Annual Revenue (€M), employees:number:Employees" />
-  <meta name="value-formula" content="revenue * 0.02 * 1000000 + employees * 1500" />
-  <meta name="value-label"   content="Estimated Annual Value (€)" />
+  <!-- External references: "Label|https://url" pairs, comma-separated -->
+  <meta name="references"    content="">
 
-  <!-- Local preview stylesheet — the catalog ignores this line -->
-  <link rel="stylesheet" href="style.css" />
+  <!-- Lifecycle relationships (slugs of related offerings) -->
+  <meta name="prior-offerings" content="">
+  <meta name="next-offerings"  content="">
+
+  <!-- ════════════════════════════════════════════════════════════════════
+       BUSINESS VALUE CALCULATOR
+       Pick ONE formula from the examples below and paste it into the
+       active value-inputs / value-formula / value-label meta tags.
+
+       inputs format:  variableName:type:Display Label  (comma-separated)
+       formula:        arithmetic expression using the variable names
+       label:          unit/description shown next to the result
+
+       ── TOP-LINE: Revenue growth ─────────────────────────────────────
+
+       1. FTE productivity (weekly hours saved × team × rate)
+          inputs:  teamSize:number:Team size,hoursSaved:number:Hours saved per week
+          formula: teamSize * hoursSaved * 52 * 85
+          label:   Estimated annual value (€)
+
+       2. Win-rate uplift on existing pipeline
+          inputs:  pipeline:number:Open pipeline (€),winRateUplift:number:Win-rate uplift (%),avgDealSize:number:Avg deal size (€)
+          formula: pipeline * winRateUplift / 100
+          label:   Additional revenue from improved win rate (€)
+
+       3. Churn reduction — recurring revenue saved
+          inputs:  arr:number:Annual recurring revenue (€),churnReduction:number:Churn reduction (pp)
+          formula: arr * churnReduction / 100
+          label:   ARR protected per year (€)
+
+       4. Price premium — value-based pricing uplift
+          inputs:  revenue:number:Current annual revenue (€),premiumPct:number:Achievable premium (%)
+          formula: revenue * premiumPct / 100
+          label:   Additional top-line from pricing uplift (€)
+
+       5. Cross-sell / upsell expansion
+          inputs:  customers:number:Customer count,crossSellRate:number:Cross-sell rate (%),avgOrderValue:number:Avg order value (€)
+          formula: customers * crossSellRate / 100 * avgOrderValue * 12
+          label:   Annual expansion revenue (€)
+
+       6. Time-to-market acceleration
+          inputs:  revenueAtRisk:number:Annual revenue of delayed product (€),monthsAccelerated:number:Months accelerated
+          formula: revenueAtRisk * monthsAccelerated / 12
+          label:   Revenue pulled forward (€)
+
+       7. Market expansion — new segment entry
+          inputs:  newMarketSize:number:Addressable new market (€),captureRate:number:Expected capture rate (%),margin:number:Contribution margin (%)
+          formula: newMarketSize * captureRate / 100 * margin / 100
+          label:   Incremental contribution margin (€)
+
+       8. Retention-to-upsell — rescued churning accounts
+          inputs:  churningRevenue:number:Revenue at churn risk (€),retentionRate:number:Expected retention rate (%)
+          formula: churningRevenue * retentionRate / 100
+          label:   Revenue retained (€)
+
+       ── BOTTOM-LINE: Cost reduction ──────────────────────────────────
+
+       9. FTE labour savings (headcount x fully-loaded cost)
+          inputs:  ftes:number:FTEs replaced or redeployed,avgSalary:number:Avg annual salary (€),overheadPct:number:Overhead & benefits (%)
+          formula: ftes * avgSalary * (1 + overheadPct / 100)
+          label:   Annual fully-loaded labour savings (€)
+
+       10. Process automation — recurring manual effort
+           inputs:  processHours:number:Hours per process run,runsPerWeek:number:Runs per week,fteCount:number:FTEs involved,hourlyRate:number:Avg hourly rate (€)
+           formula: processHours * runsPerWeek * 52 * fteCount * hourlyRate
+           label:   Annual automation savings (€)
+
+       11. Vendor / contract consolidation
+           inputs:  vendorCount:number:Vendors to consolidate,avgVendorCost:number:Avg annual vendor cost (€),savingsPct:number:Expected savings (%)
+           formula: vendorCount * avgVendorCost * savingsPct / 100
+           label:   Annual vendor savings (€)
+
+       12. Error / defect rate reduction
+           inputs:  errorVolume:number:Annual error volume,errorCost:number:Cost per error (€),errorReduction:number:Error reduction (%)
+           formula: errorVolume * errorCost * errorReduction / 100
+           label:   Annual cost of poor quality avoided (€)
+
+       13. Rework & exception handling elimination
+           inputs:  volume:number:Annual transaction volume,reworkRate:number:Current rework rate (%),reworkCost:number:Cost per rework (€)
+           formula: volume * reworkRate / 100 * reworkCost
+           label:   Annual rework cost eliminated (€)
+
+       14. SLA penalty & incident cost avoidance
+           inputs:  incidents:number:Annual incidents,avgPenalty:number:Avg penalty per incident (€),reductionRate:number:Incident reduction (%)
+           formula: incidents * avgPenalty * reductionRate / 100
+           label:   Penalties avoided per year (€)
+
+       15. Energy & infrastructure efficiency
+           inputs:  annualKwh:number:Annual energy consumption (kWh),pricePerKwh:number:Energy price (€/kWh),efficiencyGainPct:number:Efficiency gain (%)
+           formula: annualKwh * pricePerKwh * efficiencyGainPct / 100
+           label:   Annual energy savings (€)
+
+       16. Inventory & working stock optimisation
+           inputs:  inventoryValue:number:Current inventory value (€),holdingCostPct:number:Holding cost rate (%),reductionPct:number:Inventory reduction (%)
+           formula: inventoryValue * holdingCostPct / 100 * reductionPct / 100
+           label:   Annual holding cost savings (€)
+
+       ── WORKING CAPITAL & CASH FLOW ──────────────────────────────────
+
+       17. DSO improvement — cash released from receivables
+           inputs:  annualRevenue:number:Annual revenue (€),dsoReductionDays:number:DSO reduction (days)
+           formula: annualRevenue / 365 * dsoReductionDays
+           label:   One-time cash release from receivables (€)
+
+       18. Payment terms extension — cost-of-capital benefit
+           inputs:  annualSpend:number:Annual addressable spend (€),extensionDays:number:Payment terms extension (days),costOfCapitalPct:number:Cost of capital (%)
+           formula: annualSpend * extensionDays / 365 * costOfCapitalPct / 100
+           label:   Annual financing benefit (€)
+
+       19. Inventory cash release — stock turn improvement
+           inputs:  cogs:number:Annual COGS (€),currentDIO:number:Current days inventory outstanding,targetDIO:number:Target days inventory outstanding
+           formula: cogs / 365 * (currentDIO - targetDIO)
+           label:   One-time cash released from inventory (€)
+
+       ── PRODUCTIVITY & CAPACITY ───────────────────────────────────────
+
+       20. Meeting cost reduction
+           inputs:  meetingsPerWeek:number:Meetings per week,avgAttendees:number:Avg attendees,hourlyRate:number:Avg hourly rate (€),hoursReclaimed:number:Hours reclaimed per meeting
+           formula: meetingsPerWeek * avgAttendees * 52 * hourlyRate * hoursReclaimed
+           label:   Annual meeting cost saved (€)
+
+       21. New-hire onboarding acceleration
+           inputs:  newHiresPerYear:number:New hires per year,weeksReduced:number:Onboarding weeks reduced,weeklyProductivityCost:number:Weekly lost productivity cost (€)
+           formula: newHiresPerYear * weeksReduced * weeklyProductivityCost
+           label:   Annual productivity gain from faster onboarding (€)
+
+       22. Technical debt elimination — dev capacity freed
+           inputs:  devTeamSize:number:Dev team size,techDebtHoursPct:number:Hours lost to tech debt (%),hourlyRate:number:Loaded dev rate (€/h)
+           formula: devTeamSize * techDebtHoursPct / 100 * 2080 * hourlyRate
+           label:   Annual dev capacity unlocked (€)
+
+       ════════════════════════════════════════════════════════════════ -->
+
+  <!-- Active calculator — replace with any example above -->
+  <meta name="value-inputs"  content="teamSize:number:Team size,hoursSaved:number:Hours saved per week">
+  <meta name="value-formula" content="teamSize * hoursSaved * 52 * 85">
+  <meta name="value-label"   content="Estimated annual value (€)">
+
+  <title>My Offering Title</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <h2>What we do</h2>
-  <p>
-    One short paragraph describing the offering from the client's perspective.
-    Focus on outcome, not activities.
-  </p>
 
-  <h2>Approach</h2>
-  <ol>
-    <li><strong>Phase 1 (Week 1–2):</strong> Description of activities and outputs.</li>
-    <li><strong>Phase 2 (Week 3–4):</strong> Description of activities and outputs.</li>
-    <li><strong>Phase 3 (Week 5–6):</strong> Description of activities and outputs.</li>
-  </ol>
+  <!-- ════════════════════════════════════════════════════════════════════
+       PREVIEW CHROME — shown in local browser only, ignored by the app
+       ════════════════════════════════════════════════════════════════════ -->
+  <span class="preview-note">Local preview — metadata sections and sidebar are generated by the catalog</span>
 
-  <h2>Deliverables</h2>
-  <ul>
-    <li>Deliverable one</li>
-    <li>Deliverable two</li>
-    <li>Deliverable three</li>
-  </ul>
-
-  <h2>Typical engagement</h2>
-  <p>Duration · Team size · Commercial model (e.g. 6 weeks · 2 consultants · Fixed-fee)</p>
-
-  <!-- Optional: Mermaid diagram. Shown as monospace locally, rendered as SVG in the catalog. -->
-  <div class="mermaid">
-    graph LR
-      A[Input] --> B[This Offering]
-      B --> C[Outcome]
+  <!-- Simulated app header bar -->
+  <div class="preview-app-header">
+    <span class="preview-back-link">← Catalog</span>
+    <span class="preview-header-title">My Offering Title</span>
   </div>
+
+  <!-- ════════════════════════════════════════════════════════════════════
+       OFFERING DETAIL — mirrors the catalog's offering-detail-main layout
+       The header and metadata sections below are rendered by the catalog
+       from the <meta> tags above. They are shown here for preview only.
+       ════════════════════════════════════════════════════════════════════ -->
+  <div class="offering-detail-main">
+
+    <!-- Header: symbol + title + badges (from meta tags) -->
+    <div class="offering-detail-header">
+      <div class="offering-detail-symbol">🚀</div>
+      <div class="offering-detail-meta">
+        <h1 class="offering-detail-title">My Offering Title</h1>
+        <div class="offering-detail-badges">
+          <span class="badge badge-blue">Strategy</span>
+          <span class="badge">financial-services</span>
+          <span class="badge">retail</span>
+          <span class="tag">tag1</span>
+          <span class="tag">tag2</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Management Summary (from meta name="summary") -->
+    <div class="offering-section">
+      <div class="offering-section-title">Management Summary</div>
+      <p style="font-size:15px; color:var(--at-text-2); line-height:1.65;">
+        A one-sentence management summary of this offering.
+      </p>
+    </div>
+
+    <!-- Problems Addressed (from meta name="problems") -->
+    <div class="offering-section">
+      <div class="offering-section-title">Problems Addressed</div>
+      <ul style="padding-left:18px; color:var(--at-text-2); font-size:14px; line-height:1.7;">
+        <li>Problem one</li>
+        <li>Problem two</li>
+        <li>Problem three</li>
+      </ul>
+    </div>
+
+    <!-- Profiles We Bring (from meta name="profiles") -->
+    <div class="offering-section">
+      <div class="offering-section-title">Profiles We Bring</div>
+      <div class="offering-section-chips">
+        <span class="badge badge-purple">Role 1</span>
+        <span class="badge badge-purple">Role 2</span>
+      </div>
+    </div>
+
+    <!-- Methods & Processes (from meta name="methods") -->
+    <div class="offering-section">
+      <div class="offering-section-title">Methods &amp; Processes</div>
+      <div class="offering-section-chips">
+        <span class="badge badge-blue">Method A</span>
+        <span class="badge badge-blue">Framework B</span>
+      </div>
+    </div>
+
+    <!-- Technologies (from meta name="technologies") -->
+    <div class="offering-section">
+      <div class="offering-section-title">Technologies</div>
+      <div class="offering-section-chips">
+        <span class="badge">Tool X</span>
+        <span class="badge">Platform Y</span>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════════
+         OFFERING BODY — edit the content below. This HTML is what the
+         catalog renders inside the "Details" section of the detail view.
+         Use headings, paragraphs, lists, tables, badges, cards, mermaid.
+
+         SECTION ORDER — follow this sequence. Each section has a comment
+         block below explaining exactly what to write, why it matters, and
+         how to phrase it strongly. Delete sections that genuinely don't
+         apply; do not leave placeholder text in.
+         ════════════════════════════════════════════════════════════════ -->
+    <div class="offering-section">
+      <div class="offering-section-title">Details</div>
+      <div class="offering-body-html">
+
+        <!-- ══════════════════════════════════════════════════════════════
+             SECTION 1 — THE BURNING PLATFORM
+             ══════════════════════════════════════════════════════════════
+             WHAT:  1–2 short paragraphs that name the specific, painful
+                    business problem this offering solves. No fluff, no
+                    industry history lessons. Go straight to the wound.
+
+             WHY:   Buyers only read past the headline if they recognise
+                    their own pain. This section creates the "that's us"
+                    moment that makes everything else credible.
+
+             HOW TO PHRASE STRONGLY:
+               · Use present tense and second person: "Your finance teams
+                 spend 40 % of close week reconciling data that should
+                 never have diverged."
+               · Name the cost of inaction, not just the existence of
+                 the problem: "Every month without this costs X."
+               · Avoid hedge words: not "many organisations struggle with"
+                 but "most mid-size manufacturers lose €X per quarter to".
+               · If you have a stat, lead with it. If not, a sharp
+                 observation beats a vague claim.
+
+             EXAMPLE STRUCTURE:
+               <p>The typical [role] at a [size] [industry] company spends
+               [X hours / €Y / Z %] on [painful activity] that generates no
+               competitive advantage. The root cause is [structural reason].
+               The result: [downstream consequence that leadership feels].</p>
+               <p>Most attempts to fix this [describe why the obvious fix
+               fails] — which is why the problem persists.</p>
+             ══════════════════════════════════════════════════════════════ -->
+        <h2>The problem</h2>
+        <p>
+          Describe the specific, measurable pain. Lead with a number or a
+          sharp observation. Name the structural root cause. Explain why the
+          obvious fix doesn't work.
+        </p>
+        <p>
+          Second paragraph: connect the operational pain to a strategic
+          consequence that a C-level sponsor feels — lost revenue, cost
+          creep, regulatory exposure, or talent drain.
+        </p>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             SECTION 2 — WHAT YOU GET (THE DELIVERABLE)
+             ══════════════════════════════════════════════════════════════
+             WHAT:  A precise, tangible description of the end state. List
+                    every concrete artefact, decision, capability, or asset
+                    the client owns after the engagement ends.
+
+             WHY:   Vague promises ("strategic roadmap", "improved processes")
+                    lose to competitors who say "a 90-day implementation plan,
+                    a signed-off data model, and a trained team of 12."
+                    Specificity reduces perceived risk and anchors the price.
+
+             HOW TO PHRASE STRONGLY:
+               · Use "You leave with:" followed by a bulleted list of
+                 tangible deliverables — not activities.
+               · Each bullet names the artefact AND its decision-enabling
+                 use: "A vendor scorecard (Excel + PDF) that lets your
+                 procurement team run future RFPs without outside help."
+               · Distinguish what is yours forever from what requires
+                 ongoing support from us.
+               · Do NOT list process steps here — those belong in Section 3.
+             ══════════════════════════════════════════════════════════════ -->
+        <h2>What you get</h2>
+        <p>
+          State the concrete end state in one crisp sentence. Then bullet
+          every deliverable the client owns when the engagement closes.
+        </p>
+        <ul>
+          <li><strong>Artefact A</strong> — what it is and what decision it enables.</li>
+          <li><strong>Artefact B</strong> — what it is and what it replaces or retires.</li>
+          <li><strong>Artefact C</strong> — format (slide deck / model / trained team / etc.)
+              and who in the client org uses it day-to-day.</li>
+        </ul>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             SECTION 3 — HOW IT WORKS (ENGAGEMENT MODEL)
+             ══════════════════════════════════════════════════════════════
+             WHAT:  The phases, key milestones, and gate criteria from
+                    kick-off to handover. Include duration, team size, and
+                    client time commitment per phase.
+
+             WHY:   Buyers need to imagine the engagement running inside
+                    their organisation. If they can't picture it, they
+                    defer. A clear phase diagram reduces "let us think
+                    about it" by making the process feel routine, not risky.
+
+             HOW TO PHRASE STRONGLY:
+               · Assign a name AND a concrete output to each phase, not
+                 just a verb: "Phase 2 — Diagnosis (weeks 2–4): heat-map of
+                 25 processes by effort × error-rate; signed off by COO."
+               · State the client's time commitment honestly: "We need one
+                 half-day workshop per week with your process owners."
+                 Hiding this creates disappointment and churn.
+               · The mermaid diagram below is mandatory — update node labels
+                 to match your actual phase names and outputs.
+               · Keep to ≤ 6 phases. If your engagement has more, group them.
+             ══════════════════════════════════════════════════════════════ -->
+        <h2>How it works</h2>
+        <p>
+          One sentence on the overall engagement shape (e.g., fixed-scope /
+          iterative / retainer). State total duration and peak client time
+          commitment up front so there are no surprises.
+        </p>
+
+        <div class="mermaid">
+          graph LR
+            A["Phase 1<br/>Kick-off &amp; scoping<br/><i>Wk 1</i>"] --> B["Phase 2<br/>Discovery &amp; diagnosis<br/><i>Wks 2–4</i>"]
+            B --> C["Phase 3<br/>Design &amp; validation<br/><i>Wks 5–7</i>"]
+            C --> D["Phase 4<br/>Delivery &amp; build<br/><i>Wks 8–11</i>"]
+            D --> E["Phase 5<br/>Handover &amp; adoption<br/><i>Wk 12</i>"]
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Phase</th>
+              <th>Key activities</th>
+              <th>Gate output</th>
+              <th>Client time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1 · Kick-off</strong></td>
+              <td>Align on scope, data access, stakeholders</td>
+              <td>Signed project charter</td>
+              <td>½ day</td>
+            </tr>
+            <tr>
+              <td><strong>2 · Discovery</strong></td>
+              <td>Interviews, data pull, current-state map</td>
+              <td>Diagnosis report</td>
+              <td>3 × ½-day workshops</td>
+            </tr>
+            <tr>
+              <td><strong>3 · Design</strong></td>
+              <td>Solution architecture, validated with key users</td>
+              <td>Approved design spec</td>
+              <td>2 × ½-day reviews</td>
+            </tr>
+            <tr>
+              <td><strong>4 · Delivery</strong></td>
+              <td>Build, test, iterate in two-week sprints</td>
+              <td>Tested deliverable</td>
+              <td>Weekly 1-hour stand-up</td>
+            </tr>
+            <tr>
+              <td><strong>5 · Handover</strong></td>
+              <td>Training, documentation, hypercare</td>
+              <td>Go-live sign-off</td>
+              <td>1 day training</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             SECTION 4 — IDEAL CLIENT PROFILE
+             ══════════════════════════════════════════════════════════════
+             WHAT:  Who this engagement is built for — and who it is NOT
+                    for. Firmographic filters (size, sector, maturity stage)
+                    plus the organisational preconditions that predict
+                    success.
+
+             WHY:   Counter-intuitive but essential: saying "this is not for
+                    you if X" builds trust faster than a broad claim. It also
+                    ensures the reader self-qualifies before buying, which
+                    protects delivery margins and client satisfaction scores.
+
+             HOW TO PHRASE STRONGLY:
+               · Lead with a tight ideal-client sentence: "This engagement
+                 delivers the most value to companies with €50 M–€1 B
+                 revenue that have outgrown spreadsheet-based [X] but have
+                 not yet invested in enterprise [Y]."
+               · List 3–5 "you're ready if" signals — observable conditions,
+                 not aspirations: "You have a named owner for [topic] at
+                 Director level or above."
+               · Include 2–3 "this is not the right fit if" conditions.
+                 This is not a sales obstacle — it protects your NPS.
+             ══════════════════════════════════════════════════════════════ -->
+        <h2>Ideal client profile</h2>
+        <p>
+          One sentence: size / sector / maturity sweet-spot. Why this exact
+          profile gets the most value from this offering.
+        </p>
+        <h3>You are ready if …</h3>
+        <ul>
+          <li>Observable condition one — specific and verifiable.</li>
+          <li>Observable condition two — ties to a role or process that exists.</li>
+          <li>Observable condition three — data, budget, or mandate signal.</li>
+        </ul>
+        <h3>This is not the right fit if …</h3>
+        <ul>
+          <li>Disqualifier one — be specific; vagueness here wastes everyone's time.</li>
+          <li>Disqualifier two — maturity or scale ceiling if one exists.</li>
+        </ul>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             SECTION 5 — TYPICAL OUTCOMES (STAT CARDS)
+             ══════════════════════════════════════════════════════════════
+             WHAT:  4–6 headline metrics from past engagements. These are
+                    the numbers a sponsor quotes internally to justify the
+                    spend. They must be real, sourced from actual client
+                    work, and expressed as the client experienced them —
+                    not as we modelled them.
+
+             WHY:   Stat cards are the most-scanned element on the page.
+                    Buyers decide in the first 10 seconds whether to read
+                    further. A striking, credible number earns that time.
+
+             HOW TO PHRASE STRONGLY:
+               · Use the client's unit of measure: "€1.2 M" beats "7-figure
+                 savings"; "14 days → 2 days" beats "86 % reduction".
+               · If you can't cite a real number, cite a range from client
+                 data: "€200 K – €800 K depending on process volume."
+               · Duration and payback are mandatory — buyers need to know
+                 how long they're exposed before value arrives.
+               · Do NOT invent numbers. Mark estimates with "~" or "est."
+             ══════════════════════════════════════════════════════════════ -->
+        <h2>Typical outcomes</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">Outcome A</div>
+            <div class="stat-value">+40%</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Outcome B</div>
+            <div class="stat-value">−30%</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Duration</div>
+            <div class="stat-value">6 wks</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Payback</div>
+            <div class="stat-value">&lt; 6 mo</div>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             SECTION 6 — WHAT MAKES THIS DIFFERENT
+             ══════════════════════════════════════════════════════════════
+             WHAT:  3–5 specific, defensible differentiators versus the
+                    realistic alternatives the buyer is considering:
+                    (a) doing it in-house, (b) a large consultancy,
+                    (c) a software tool, (d) doing nothing.
+
+             WHY:   Every buyer is secretly asking "why not just [X]?"
+                    Answering this proactively prevents the objection from
+                    killing a deal that never surfaced it. Generic claims
+                    ("we're pragmatic", "we care about results") are noise —
+                    specific structural advantages are heard.
+
+             HOW TO PHRASE STRONGLY:
+               · Frame each differentiator as a contrast: "Unlike [generic
+                 approach], we [specific thing] because [structural reason]."
+               · Name the alternative you beat: "An in-house team typically
+                 takes 6 months to reach the same output because …"
+               · Tie to proof where possible: "Our [method/tool/IP] was
+                 built from [N] engagements across [sectors]."
+               · Avoid: "experienced team", "tailored approach", "deep
+                 expertise". These are claimed by everyone and believed by
+                 no one without evidence.
+             ══════════════════════════════════════════════════════════════ -->
+        <h2>What makes this different</h2>
+        <ul>
+          <li>
+            <strong>Differentiator 1</strong> — contrast it with the obvious
+            alternative. Name the structural reason we win.
+          </li>
+          <li>
+            <strong>Differentiator 2</strong> — IP, method, or data asset
+            that is ours and not available off the shelf.
+          </li>
+          <li>
+            <strong>Differentiator 3</strong> — speed or certainty advantage
+            that the client cannot replicate internally in reasonable time.
+          </li>
+        </ul>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             SECTION 7 — WHAT WE NEED FROM YOU (PREREQUISITES)
+             ══════════════════════════════════════════════════════════════
+             WHAT:  The data, access, decisions, and executive sponsorship
+                    the client must provide for the engagement to succeed.
+                    Be complete and honest — omitting a hard requirement
+                    here causes scope disputes later.
+
+             WHY:   Clients who feel surprised by requirements mid-engagement
+                    lose trust. Publishing prerequisites acts as a checklist
+                    that filters out buyers who aren't ready, and signals
+                    confidence in our own process to those who are.
+
+             HOW TO PHRASE STRONGLY:
+               · Frame positively as "to get the most value": "To deliver
+                 within the 6-week timeline, we need …"
+               · Be specific about level and availability: "A named project
+                 sponsor at VP level or above, available for 1 hour per week"
+                 — not "executive sponsorship".
+               · Separate hard prerequisites (engagement cannot start without
+                 these) from soft ones (nice to have, or we work around them).
+             ══════════════════════════════════════════════════════════════ -->
+        <h2>What we need from you</h2>
+        <p>
+          To deliver on time and on value, we ask the client to bring:
+        </p>
+        <ul>
+          <li>
+            <strong>Executive sponsor</strong> — [title], available for
+            [frequency] steering decisions. Without a named sponsor with
+            budget authority, implementations stall at change-control gates.
+          </li>
+          <li>
+            <strong>Data access</strong> — [describe the systems or exports]
+            available from day one. Delays in data access are the single
+            most common cause of timeline overrun in this type of engagement.
+          </li>
+          <li>
+            <strong>Subject-matter experts</strong> — [N] process owners,
+            each committing approximately [X hours/week] for workshops and
+            review cycles.
+          </li>
+        </ul>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             SECTION 8 — CLIENT STORY / REFERENCE CASE
+             ══════════════════════════════════════════════════════════════
+             WHAT:  One concrete story from a past engagement: situation,
+                    what we did, measurable result. Anonymise if needed but
+                    include enough detail to be credible (sector, company
+                    size, before/after metrics).
+
+             WHY:   Social proof is the most powerful section on the page.
+                    A real story — even anonymised — converts better than
+                    any number of capability claims because it lets the
+                    reader project themselves into the same situation.
+
+             HOW TO PHRASE STRONGLY:
+               · Open with a situation the reader recognises: "[Industry]
+                 company, ~[revenue/size], faced [specific problem]."
+               · State what we did in one sentence — the reader wants to
+                 know what you did, not how clever you are.
+               · Close with the result in the client's own terms: "Twelve
+                 weeks later, the CFO signed off a €1.4 M cost reduction
+                 programme."
+               · If you cannot share a name, say "[Global top-5 insurer]"
+                 or "[European manufacturer, €2 B revenue]" — specificity
+                 without identifying detail is fine.
+               · Do not include a testimonial quote unless it is real,
+                 attributed, and cleared by the client.
+             ══════════════════════════════════════════════════════════════ -->
+        <h2>Client story</h2>
+        <p>
+          <strong>[Anonymised sector + size]</strong> — one sentence on the
+          situation: what the client was trying to do and what stood in
+          the way.
+        </p>
+        <p>
+          We [what we did — one specific sentence]. Within [timeframe],
+          [measurable result that the client's CFO or COO would quote].
+        </p>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             SECTION 9 — INDICATIVE BUSINESS CASE
+             ══════════════════════════════════════════════════════════════
+             WHAT:  A structured cost/benefit table built on real, auditable
+                    assumptions. Show the maths. Name every assumption.
+                    Make the range of outcomes explicit.
+
+             WHY:   A buyer who can run the numbers themselves is a buyer
+                    who can build the internal business case without us in
+                    the room. That is how deals get approved. Generic ROI
+                    claims ("typical 3–5× return") are dismissed instantly.
+
+             HOW TO PHRASE STRONGLY:
+               · Start the footnote with the assumption set: company size,
+                 revenue, FTE count, hourly rate. Anyone reading should be
+                 able to recreate the table.
+               · Every row in the table must be traceable to a lever from
+                 the calculator meta tags above. Consistency = credibility.
+               · Separate recurring annual value from one-time releases.
+                 CFOs treat them differently in their models.
+               · Total row should show a range, not a single point: "€600 K
+                 – €1.1 M depending on process volume." Precision theatre
+                 backfires; ranges signal honesty.
+             ══════════════════════════════════════════════════════════════ -->
+        <h2>Indicative business case</h2>
+        <p style="font-size:13px; color:var(--at-text-3); margin-bottom:10px;">
+          Assumptions: mid-size enterprise, 500 FTEs, €85 loaded hourly rate.
+          Adjust inputs in the calculator above for your specific situation.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Value driver</th>
+              <th>Lever</th>
+              <th style="text-align:right">Annual impact</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Top-line</td>
+              <td>Win-rate +3 pp on €10 M pipeline</td>
+              <td style="text-align:right">€300 K</td>
+            </tr>
+            <tr>
+              <td>Top-line</td>
+              <td>Churn −2 pp on €5 M ARR</td>
+              <td style="text-align:right">€100 K</td>
+            </tr>
+            <tr>
+              <td>Cost</td>
+              <td>2 FTEs redeployed (fully loaded)</td>
+              <td style="text-align:right">€240 K</td>
+            </tr>
+            <tr>
+              <td>Cost</td>
+              <td>Error rate −40 %, 5 000 errors @ €80</td>
+              <td style="text-align:right">€160 K</td>
+            </tr>
+            <tr>
+              <td>Working capital</td>
+              <td>DSO −10 days on €20 M revenue</td>
+              <td style="text-align:right">€548 K (one-time)</td>
+            </tr>
+            <tr style="font-weight:600; border-top:2px solid var(--at-border-mid)">
+              <td colspan="2">Total recurring annual benefit</td>
+              <td style="text-align:right">€800 K+</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             SECTION 10 — RISKS WE MITIGATE
+             ══════════════════════════════════════════════════════════════
+             WHAT:  The top 3–5 risks a client faces if they don't act —
+                    or if they act without our specific approach. Frame
+                    these as risks the sponsor must manage, not as scare
+                    tactics.
+
+             WHY:   Decision-makers are more motivated by avoiding a
+                    known loss than by capturing an uncertain gain.
+                    Naming the risk creates urgency and positions us as
+                    the party that has already thought about failure modes.
+
+             HOW TO PHRASE STRONGLY:
+               · Name the risk in concrete terms: "Without a single source
+                 of truth for [X], regulatory audits in [region/sector]
+                 create a median €350 K fine exposure."
+               · Connect each risk to a stakeholder who owns it:
+                 "This is a CFO/CTO/COO risk, not just an ops issue."
+               · Do not manufacture risks. If the cost of inaction is low,
+                 this section should be short or omitted. Overstating risk
+                 destroys credibility as fast as it creates urgency.
+             ══════════════════════════════════════════════════════════════ -->
+        <h2>Risks we mitigate</h2>
+        <ul>
+          <li>
+            <strong>Risk 1</strong> — specific consequence of inaction,
+            tied to a measurable cost or exposure. Name who owns this risk.
+          </li>
+          <li>
+            <strong>Risk 2</strong> — regulatory, competitive, or
+            operational risk that compounds without this capability.
+          </li>
+          <li>
+            <strong>Risk 3</strong> — execution risk of doing this without
+            the right expertise (e.g., common DIY failure modes).
+          </li>
+        </ul>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             SECTION 11 — HOW WE MEASURE SUCCESS
+             ══════════════════════════════════════════════════════════════
+             WHAT:  The 3–5 KPIs we track during and after the engagement
+                    to confirm value was delivered. Include baseline, target,
+                    and measurement method for each.
+
+             WHY:   Buyers who can picture how success gets measured are
+                    more confident signing because they see an exit ramp
+                    from dependency. It also forces us to be accountable —
+                    which is a differentiator when competitors won't
+                    commit to measurable outcomes.
+
+             HOW TO PHRASE STRONGLY:
+               · Use the format: [Metric] — baseline [X] → target [Y],
+                 measured by [method/system] at [frequency/milestone].
+               · Tie at least one KPI to a financial outcome (not just an
+                 operational proxy), because that is what the sponsor
+                 reports upward.
+               · Be honest about what you can and cannot control. "We
+                 commit to [leading indicator]; the [lagging financial
+                 outcome] follows, conditional on [client action]."
+             ══════════════════════════════════════════════════════════════ -->
+        <h2>How we measure success</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>KPI</th>
+              <th>Baseline</th>
+              <th>Target</th>
+              <th>Measured by</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>KPI 1 — operational leading indicator</td>
+              <td>Current state value</td>
+              <td>Target value</td>
+              <td>System / report / frequency</td>
+            </tr>
+            <tr>
+              <td>KPI 2 — financial outcome</td>
+              <td>Current state value</td>
+              <td>Target value</td>
+              <td>System / report / frequency</td>
+            </tr>
+            <tr>
+              <td>KPI 3 — adoption / usage signal</td>
+              <td>Current state value</td>
+              <td>Target value</td>
+              <td>System / report / frequency</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             SECTION 12 — COMMON QUESTIONS
+             ══════════════════════════════════════════════════════════════
+             WHAT:  3–6 real objections or questions that come up in every
+                    first meeting, answered honestly and briefly.
+
+             WHY:   Buyers who don't get answers to obvious questions
+                    defer. Proactively answering the questions removes the
+                    reason to schedule yet another call before deciding.
+                    It also signals that we've run this engagement before
+                    and have thought through the failure modes.
+
+             HOW TO PHRASE STRONGLY:
+               · Use the actual question a CFO or COO would ask, not a
+                 softened version: "What if our data isn't ready?" not
+                 "Regarding data readiness …"
+               · Answers must be honest. If the engagement takes longer
+                 when data is messy, say so — and say what we do about it.
+               · 3 questions minimum. Cap at 6. If you have more, the
+                 offering is probably scoped too broadly.
+             ══════════════════════════════════════════════════════════════ -->
+        <h2>Common questions</h2>
+
+        <p><strong>What if our data isn't clean or complete?</strong><br>
+          [Honest answer: what we can work with, what causes delay, how
+          we handle partial data. Do not promise it won't matter.]
+        </p>
+
+        <p><strong>How much internal time does this take?</strong><br>
+          [Specific, honest answer. Cite the phase table above. Buyers
+          who underestimate their own load are the ones who write bad
+          reviews.]
+        </p>
+
+        <p><strong>Can we do a smaller pilot first?</strong><br>
+          [If yes, describe what a pilot covers and how it gates the full
+          engagement. If no, explain why the minimum scope is what it is.]
+        </p>
+
+        <p><strong>What happens after the engagement ends?</strong><br>
+          [Describe any optional ongoing support, SLA, or handover model.
+          Be specific about what is included and what is not.]
+        </p>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             SECTION 13 — NEXT STEPS
+             ══════════════════════════════════════════════════════════════
+             WHAT:  A single, low-friction action the reader can take right
+                    now. One call-to-action maximum. Tell them exactly what
+                    will happen when they take it.
+
+             WHY:   Every section above has built intent. This section
+                    converts intent. A vague "get in touch" loses to a
+                    specific "book a 30-minute call where we will X, Y, Z".
+                    Make the cost of the first step feel trivially low.
+
+             HOW TO PHRASE STRONGLY:
+               · Tell the reader what they get from the first meeting:
+                 "In 30 minutes we will [show you / answer / size] [X]
+                 so that you can [decide / present to board / scope]."
+               · Link to the contact persons listed in the meta tags above
+                 (the catalog renders them automatically in the sidebar).
+               · Optionally offer a no-cost diagnostic or benchmark that
+                 makes the first step even easier to say yes to.
+             ══════════════════════════════════════════════════════════════ -->
+        <h2>Next steps</h2>
+        <p>
+          Book a 30-minute call with [contact name(s) from the sidebar].
+          We will [specific thing you will do or show in that call] so
+          that you can [what they can decide or do afterwards].
+        </p>
+        <p>
+          If you prefer to start with a no-commitment diagnostic,
+          [describe what a free/low-cost first step looks like and what
+          it produces].
+        </p>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             SECTION 14 — VALUE DRIVER REFERENCE (CALCULATOR GUIDE)
+             ══════════════════════════════════════════════════════════════
+             WHAT:  The formula reference cards below are a guide for
+                    choosing the right value-* meta tags at the top of this
+                    file. They render as a visual reference and are intended
+                    for the offering author, not the end reader.
+
+             WHY:   Keeping the formula reference inline means the author
+                    doesn't need to open a separate document to pick the
+                    right calculator inputs. Delete this section from your
+                    final offering if it looks out of place for the audience.
+
+             NOTE:  The live calculator rendered by the catalog app is
+                    driven by the value-inputs / value-formula / value-label
+                    meta tags at the top of the file — not by these cards.
+                    These cards are a static visual reference only.
+             ══════════════════════════════════════════════════════════════ -->
+        <h2>Value driver reference</h2>
+        <p style="font-size:13px; color:var(--at-text-3); margin-bottom:16px;">
+          Choose the value-* meta tags (see source comments) that best match
+          your engagement and drop them into the calculator above.
+        </p>
+
+        <h3>📈 Top-line growth</h3>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">Win-rate uplift</div>
+            <div class="stat-value" style="font-size:15px">pipeline × Δwin%</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Churn reduction</div>
+            <div class="stat-value" style="font-size:15px">ARR × Δchurn%</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Price premium</div>
+            <div class="stat-value" style="font-size:15px">revenue × Δprice%</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Cross-sell</div>
+            <div class="stat-value" style="font-size:15px">N × rate% × AOV × 12</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Time-to-market</div>
+            <div class="stat-value" style="font-size:15px">rev × months / 12</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Market expansion</div>
+            <div class="stat-value" style="font-size:15px">TAM × capture% × GM%</div>
+          </div>
+        </div>
+
+        <h3>💰 Cost reduction</h3>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">Labour savings</div>
+            <div class="stat-value" style="font-size:15px">FTE × salary × (1+OH%)</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Automation</div>
+            <div class="stat-value" style="font-size:15px">hrs × runs × 52 × rate</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Vendor savings</div>
+            <div class="stat-value" style="font-size:15px">N × cost × savings%</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Error reduction</div>
+            <div class="stat-value" style="font-size:15px">vol × cost × Δerror%</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">SLA avoidance</div>
+            <div class="stat-value" style="font-size:15px">incidents × penalty × Δ%</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Energy savings</div>
+            <div class="stat-value" style="font-size:15px">kWh × €/kWh × Δeff%</div>
+          </div>
+        </div>
+
+        <h3>🏦 Working capital</h3>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">DSO improvement</div>
+            <div class="stat-value" style="font-size:15px">rev / 365 × ΔDSO</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Payment terms</div>
+            <div class="stat-value" style="font-size:15px">spend × days / 365 × CoC%</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Inventory release</div>
+            <div class="stat-value" style="font-size:15px">COGS / 365 × ΔDIO</div>
+          </div>
+        </div>
+
+        <h3>⚡ Productivity &amp; capacity</h3>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">Meeting efficiency</div>
+            <div class="stat-value" style="font-size:15px">mtgs × N × 52 × hrs × rate</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Onboarding speed</div>
+            <div class="stat-value" style="font-size:15px">hires × Δwks × wk-cost</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Tech debt removal</div>
+            <div class="stat-value" style="font-size:15px">devs × debt% × 2080 × rate</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- end offering-body-html -->
+
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════════════
+       MERMAID — CDN init for local preview only.
+       This block is automatically stripped by the catalog when indexing.
+       ════════════════════════════════════════════════════════════════════ -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <script>
+  if (typeof mermaid !== 'undefined') {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'base',
+      themeVariables: {
+        primaryColor: '#cdd6ff',
+        primaryTextColor: '#111827',
+        primaryBorderColor: '#e2e4ec',
+        lineColor: '#6b7280',
+        secondaryColor: '#f5f6fa',
+        tertiaryColor: '#f8f9fc',
+        background: '#ffffff',
+        mainBkg: '#ffffff',
+        nodeBorder: '#d0d3de',
+        clusterBkg: '#f5f6fa',
+        titleColor: '#111827',
+        edgeLabelBackground: '#ffffff',
+        fontFamily: '"Source Sans 3", system-ui, -apple-system, sans-serif',
+        fontSize: '14px',
+        activeTaskBorderColor: '#1612ff',
+        activeTaskBkgColor: '#cdd6ff',
+        gridColor: '#eceef5',
+        section0: '#cdd6ff',
+        section1: '#f5f6fa',
+      }
+    });
+  }
+  </script>
+
 </body>
 </html>
