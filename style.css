@@ -189,9 +189,10 @@ body::before {
 .offering-body-html h3,
 .offering-body-html h4 { font-size: 15px; font-weight: 600; color: var(--at-text); margin: 16px 0 6px; }
 .offering-body-html p  { margin-bottom: 12px; }
-.offering-body-html ul,
-.offering-body-html ol { padding-left: 20px; margin-bottom: 12px; }
-.offering-body-html li { margin-bottom: 4px; }
+.offering-body-html ul  { padding-left: 22px; margin-bottom: 12px; list-style-type: disc; }
+.offering-body-html ol  { padding-left: 22px; margin-bottom: 12px; list-style-type: decimal; }
+.offering-body-html li  { margin-bottom: 6px; }
+.offering-body-html ul ul { list-style-type: circle; margin-bottom: 4px; }
 .offering-body-html strong { font-weight: 600; color: var(--at-text); }
 .offering-body-html em    { font-style: italic; }
 .offering-body-html a {
